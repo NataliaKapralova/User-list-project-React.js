@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": "2",
+      "firstName": "Natalia",
+      "lastName": "Kapralova",
+      "email": "n.kap@gmail.com",
+      "hobbies": [
+        "test",
+        "test",
+        "test"
+      ]
+    },
+    {
+      "id": "3",
+      "firstName": "Elvis",
+      "lastName": "Pres",
+      "email": "Elvis@gmail.com",
+      "hobbies": [
+        "test",
+        "test",
+        "test"
+      ]
+    },
+    {
+      "firstName": "Natalia",
+      "lastName": "Kapralova",
+      "email": "n.kapralovaa@live.nl",
+      "id": "5iwtUQ1"
+    },
+    {
+      "firstName": "Rory",
+      "lastName": "van der Woude",
+      "email": "Roryvanderwoude@hotmail.com",
+      "id": "Roryvanderwoude@hotmail.com"
+    },
+    {
+      "firstName": "Elvis",
+      "lastName": "Pandora",
+      "email": "elvispandora@test.nl",
+      "id": "elvispandora@test.nl"
+    },
+    {
+      "firstName": "Natalia",
+      "lastName": "Kapralova",
+      "email": "n.kapralovaa@live.n",
+      "id": "n.kapralovaa@live.n"
+    },
+    {
+      "firstName": "Benie",
+      "lastName": "Sanders",
+      "email": "Benie@hotmail.com",
+      "id": "Benie@hotmail.com"
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "id": "id2zM0C"
+    }
+  ]
+}
