@@ -14,7 +14,6 @@ export default function Users() {
       setDataOfUsers(dataOfUsers);
     });
   }, []);
-
   // const onDelete = (id) => {
   //   setDataOfUsers(
   //     dataOfUsers.filter(function (person) {
