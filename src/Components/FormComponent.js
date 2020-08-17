@@ -10,8 +10,6 @@ export default function FormComponent(props) {
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
 
-  console.log(props.dataOfUsers);
-
   const handleNameChange = (e) => {
     setFirstName(e.target.value);
   };
@@ -23,7 +21,7 @@ export default function FormComponent(props) {
     setEmail(e.target.value);
   };
   const addNewUser = async (newUser) => {
-    props.dataOfUsers.push(newUser);
+    // props.dataOfUsers.push(newUser);
     await axios
       .request({
         method: "post",

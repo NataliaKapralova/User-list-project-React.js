@@ -3,6 +3,7 @@ import * as styles from "../styles.css";
 import { Link } from "react-router-dom";
 import FormComponent from "./FormComponent";
 import axios from "axios";
+import UserItem from "./UserItem";
 
 export default function Main() {
   const [dataOfUsers, setDataOfUsers] = React.useState([]);
@@ -14,22 +15,25 @@ export default function Main() {
     });
   }, []);
 
-  const onDelete = () => {
-    // axios
-    //   .delete(`http://localhost:3000/users/${dataOfUsers[8]}`)
-    //   .then((res) => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //   });
-  };
+  // const onDelete = (id) => {
+  //   setDataOfUsers(
+  //     dataOfUsers.filter(function (person) {
+  //       return person.id !== id;
+  //     })
+  //   );
+  //   if (window.confirm("Are you sure?")) {
+  //     axios.delete(`http://localhost:3000/users/` + id).then((res) => {
+  //       console.log(res);
+  //       console.log("deleted request ", res.data);
+  //     });
+  //   } else {
+  //     console.log("iets");
+  //   }
+  // };
 
   return (
     <div>
-      <header> user list </header>
-      <FormComponent
-        setDataOfUsers={setDataOfUsers}
-        dataOfUsers={dataOfUsers}
-      />
+      <header> User list </header>
       <div className="Nav">
         <div> Name </div>
         <div> Username </div>
@@ -39,19 +43,19 @@ export default function Main() {
           <button> Add user </button>{" "}
         </Link>
       </div>
-      <ul>
-        {dataOfUsers.map((user) => (
-          <li className="List" key={user.id}>
-            <div className="listItems"> {user.firstName} </div>
-            <div className="listItems"> {user.lastName} </div>
-            <div className="listItems"> {user.email} </div>
-            <div className="button-container">
-              <button onClick={onDelete}>delete</button>
-              <button> Edit </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {dataOfUsers.map((user, i) => (
+        // <li className="List" key={user.id}>
+        //   <div className="listItems"> {user.firstName} </div>
+        //   <div className="listItems"> {user.lastName} </div>
+        //   <div className="listItems"> {user.email} </div>
+
+        //   <div className="button-container">
+        //     <button onClick={() => onDelete(user.id)}>delete</button>
+        //     <button> Edit </button>
+        //   </div>
+        // </li>
+        <UserItem key={user.id} user={user} />
+      ))}
     </div>
   );
 }
