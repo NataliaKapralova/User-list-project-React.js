@@ -51,16 +51,18 @@
 // export default App;
 
 import React from "react";
-import Main from "./Components/Main";
+import Users from "./Components/Users";
 import FormComponent from "./Components/FormComponent";
+import UserDetails from "./Components/UserDetails";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <Main path="/" exact component={Main} />
-        <Route path="/FormComponent" component={FormComponent} />
+        <Route exact path="/" exact component={Users} />
+        <Route exact path="/FormComponent" component={FormComponent} />
+        <Route exact path="/users/:id" component={UserDetails} />
       </Switch>
     </Router>
   );

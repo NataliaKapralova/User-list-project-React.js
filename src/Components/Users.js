@@ -5,7 +5,7 @@ import FormComponent from "./FormComponent";
 import axios from "axios";
 import UserItem from "./UserItem";
 
-export default function Main() {
+export default function Users() {
   const [dataOfUsers, setDataOfUsers] = React.useState([]);
 
   React.useEffect(() => {

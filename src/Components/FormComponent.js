@@ -2,7 +2,7 @@ import React from "react";
 import * as styles from "../styles.css";
 import axios from "axios";
 import { useHistory } from "react-router";
-import Main from "./Main";
+import faker from "faker";
 
 export default function FormComponent(props) {
   const history = useHistory();
@@ -41,7 +41,7 @@ export default function FormComponent(props) {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      id: email,
+      id: faker.random.uuid(),
     };
     event.preventDefault();
     setFirstName("");
