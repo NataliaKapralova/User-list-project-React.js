@@ -1,0 +1,15 @@
+  // const onDelete = (id) => {
+  //   setDataOfUsers(
+  //     dataOfUsers.filter(function (person) {
+  //       return person.id !== id;
+  //     })
+  //   );
+  //   if (window.confirm("Are you sure?")) {
+  //     axios.delete(`http://localhost:3000/users/` + id).then((res) => {
+  //       console.log(res);
+  //       console.log("deleted request ", res.data);
+  //     });
+  //   } else {
+  //     console.log("iets");
+  //   }
+  // };

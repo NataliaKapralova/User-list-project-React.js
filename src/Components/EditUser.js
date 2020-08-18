@@ -4,8 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import faker from "faker";
 
-export default function FormComponent(props) {
-  const history = useHistory();
+export default function EditUser(props) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -13,18 +12,22 @@ export default function FormComponent(props) {
   const handleNameChange = (e) => {
     setFirstName(e.target.value);
   };
-  const handleUserNameChange = (e) => {
+  const handleLastNameChange = (e) => {
     setLastName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const addNewUser = async (newUser) => {
+
+  const editUser = async (newUser) => {
+    const {
+      match: { params },
+    } = props;
     await axios
       .request({
-        method: "post",
-        url: `http://localhost:3000/users`,
+        method: "put",
+        url: `http://localhost:3000/users/` + params.id,
         data: newUser,
       })
       .then((response) => {
@@ -32,19 +35,19 @@ export default function FormComponent(props) {
         props.history.push("/");
       })
       .catch((err) => console.log(err));
-    console.log(newUser);
   };
 
-  // React.useEffect(() => {
-  //   const {
-  //     match: { params },
-  //   } = props;
-  //   axios.get(`http://localhost:3000/users/` + params.id).then((res) => {
-  //     let details = res.data;
-  //     setDetails(details);
-  //     console.log("Get request with user info ", res.data);
-  //   });
-  // }, []);
+  React.useEffect(() => {
+    const {
+      match: { params },
+    } = props;
+    axios.get(`http://localhost:3000/users/` + params.id).then((res) => {
+      setFirstName(res.data.firstName);
+      setLastName(res.data.lastName);
+      setEmail(res.data.email);
+      console.log("Get request with user info ", res.data);
+    });
+  }, []);
 
   const handleSubmit = async (event) => {
     let newUser = {
@@ -57,7 +60,7 @@ export default function FormComponent(props) {
     setFirstName("");
     setLastName("");
     setEmail("");
-    addNewUser(newUser);
+    editUser(newUser);
   };
   return (
     <div>
@@ -73,7 +76,7 @@ export default function FormComponent(props) {
           <input
             name="lastName"
             value={lastName}
-            onChange={handleUserNameChange}
+            onChange={handleLastNameChange}
             type="text"
             placeholder="lastname"
           />
@@ -84,7 +87,7 @@ export default function FormComponent(props) {
             name="email"
             placeholder="Email"
           />
-          <button type="submit">Save</button>
+          <button type="submit">Add user </button>
         </form>
       </div>
     </div>

@@ -1,51 +1,46 @@
 {
   "users": [
     {
-      "id": "3",
       "firstName": "Elvis",
-      "lastName": "Pres",
+      "lastName": "Pelvis",
       "email": "Elvis@gmail.com",
-      "hobbies": [
-        "test",
-        "test",
-        "test"
-      ]
+      "id": "3"
     },
     {
       "firstName": "Natalia",
       "lastName": "Kapralova",
       "email": "n.kapralovaa@live.nl",
-      "id": "n.kapralovaa@live.nl"
+      "id": "54407b7e-99a6-4c92-8ba1-2e6b66d3494d"
     },
     {
       "firstName": "Rory",
       "lastName": "van der Woude",
       "email": "Roryvanderwoude@hotmail.com",
-      "id": "Roryvanderwoude@hotmail.com"
-    },
-    {
-      "firstName": "Evlis",
-      "lastName": "Pandora",
-      "email": "ElvisPandora@hotmail.com",
-      "id": "ElvisPandora@hotmail.com"
+      "id": "16eab3f1-caf9-4730-b119-e9c1e13373d9"
     },
     {
       "firstName": "Natalia",
       "lastName": "Kapralova",
       "email": "n.kapralovaa@live.nl",
-      "id": "8dcb88aa-a95f-49a1-aa9d-41f67080952e"
+      "id": "24b4ad08-799f-4016-872e-d6148937ca98"
     },
     {
-      "firstName": "pandora",
-      "lastName": "pandora",
-      "email": "pandora",
-      "id": "f5ead448-6c49-4a34-9de7-e57ddbe2a1dd"
-    },
-    {
-      "firstName": "pandora",
-      "lastName": "pandora",
+      "firstName": "Roy",
+      "lastName": "van der Woude",
       "email": "Roryvanderwoude@hotmail.com",
-      "id": "8cae46e7-3e39-4b49-896f-5eb882b8ceef"
+      "id": "7472b870-8dd6-4659-944b-34611b4ff0be"
+    },
+    {
+      "firstName": "Elvis",
+      "lastName": "pelvis",
+      "email": "ElvisPandora@hotmail.com",
+      "id": "de6ca526-cbbf-446c-9b31-ff10d5036a9a"
+    },
+    {
+      "firstName": "Natalia",
+      "lastName": "Kapralova",
+      "email": "n.kapralovaa@live.nl",
+      "id": "3e0c86a7-2534-40ba-a046-fb64abbd0fbb"
     }
   ]
 }
