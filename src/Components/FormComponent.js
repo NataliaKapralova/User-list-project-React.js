@@ -1,15 +1,14 @@
 import React from "react";
 import * as styles from "../styles.css";
 import axios from "axios";
-import { useHistory } from "react-router";
 import faker from "faker";
 
 export default function FormComponent(props) {
-  const history = useHistory();
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
 
+  // handle input value
   const handleNameChange = (e) => {
     setFirstName(e.target.value);
   };
@@ -20,6 +19,8 @@ export default function FormComponent(props) {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
+  // post request for new user
   const addNewUser = async (newUser) => {
     await axios
       .request({
@@ -34,18 +35,7 @@ export default function FormComponent(props) {
       .catch((err) => console.log(err));
     console.log(newUser);
   };
-
-  // React.useEffect(() => {
-  //   const {
-  //     match: { params },
-  //   } = props;
-  //   axios.get(`http://localhost:3000/users/` + params.id).then((res) => {
-  //     let details = res.data;
-  //     setDetails(details);
-  //     console.log("Get request with user info ", res.data);
-  //   });
-  // }, []);
-
+  //  create new user / add new user to array /
   const handleSubmit = async (event) => {
     let newUser = {
       firstName: firstName,
@@ -63,28 +53,33 @@ export default function FormComponent(props) {
     <div>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <input
-            value={firstName}
-            onChange={handleNameChange}
-            type="text"
-            placeholder="Name"
-            name="name"
-          />
-          <input
-            name="lastName"
-            value={lastName}
-            onChange={handleUserNameChange}
-            type="text"
-            placeholder="lastname"
-          />
-          <input
-            value={email}
-            onChange={handleEmailChange}
-            type="text"
-            name="email"
-            placeholder="Email"
-          />
-          <button type="submit">Save</button>
+          <h1> Add user </h1>
+          <div className="input-field">
+            <input
+              value={firstName}
+              onChange={handleNameChange}
+              type="text"
+              placeholder="Name"
+              name="name"
+            />
+            <input
+              name="lastName"
+              value={lastName}
+              onChange={handleUserNameChange}
+              type="text"
+              placeholder="lastname"
+            />
+            <input
+              value={email}
+              onChange={handleEmailChange}
+              type="text"
+              name="email"
+              placeholder="Email"
+            />
+            <button className="btn" type="submit">
+              save
+            </button>
+          </div>
         </form>
       </div>
     </div>

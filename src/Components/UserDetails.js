@@ -5,6 +5,8 @@ import styled, { css } from "styled-components";
 
 export default function UserDetails(props) {
   const [details, setDetails] = React.useState([]);
+
+  // Get user details with ID
   React.useEffect(() => {
     const {
       match: { params },
@@ -16,6 +18,7 @@ export default function UserDetails(props) {
     });
   }, []);
 
+  // Delete user request 
   const onDelete = (id) => {
     const {
       match: { params },
@@ -32,16 +35,13 @@ export default function UserDetails(props) {
 
   return (
     <div>
-      {/* <Link className="btn grey left" to={"/"}>
-        {" "}
-        Back{" "}
-      </Link> */}
       <DetailContainer>
         <h1> Details </h1>
         <ul className="collection">
-          <li className="collection-item">{details.firstName} </li>
-          <li className="collection-item"> {details.lastName}</li>
-          <li className="collection-item"> {details.email}</li>
+          <li className="collection-item">ID : {details.id} </li>
+          <li className="collection-item"> Firstname : {details.firstName} </li>
+          <li className="collection-item"> Lastname : {details.lastName}</li>
+          <li className="collection-item">Email: {details.email}</li>
         </ul>
         <Link className="btn" to={`/users/edit/${details.id}`}>
           {" "}

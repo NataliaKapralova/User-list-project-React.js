@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "../styles.css";
 import { Link } from "react-router-dom";
-import FormComponent from "./FormComponent";
+// import FormComponent from "./FormComponent";
 import axios from "axios";
 import UserItem from "./UserItem";
 import styled, { css } from "styled-components";
@@ -18,14 +18,16 @@ export default function Users() {
 
   return (
     <div>
-      <header> User list </header>
+      <header>
+        {" "}
+        <h4> User list project </h4>{" "}
+      </header>
       <div className="Nav">
         <li> Name </li>
         <li> Username </li>
         <li> Email </li>
-        <Link to={"/FormComponent"}>
-          {" "}
-          <Button> Add user </Button>
+        <Link className="btn-small blue" to={"/FormComponent"}>
+          add user
         </Link>
       </div>
       <div>
