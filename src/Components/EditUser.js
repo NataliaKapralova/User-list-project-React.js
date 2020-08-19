@@ -8,6 +8,7 @@ export default function EditUser(props) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [title, setTitle] = React.useState("");
 
   //handle input value
   const handleNameChange = (e) => {
@@ -21,6 +22,10 @@ export default function EditUser(props) {
     setEmail(e.target.value);
   };
 
+  const handleProductChange = (e) => {
+    setTitle(e.target.value);
+  };
+
   //fetch user ID
 
   React.useEffect(() => {
@@ -31,6 +36,7 @@ export default function EditUser(props) {
       setFirstName(res.data.firstName);
       setLastName(res.data.lastName);
       setEmail(res.data.email);
+      setTitle(res.data.product.title);
       console.log("Get request with user info ", res.data);
     });
   }, []);
@@ -48,19 +54,22 @@ export default function EditUser(props) {
       })
       .then((response) => {
         console.log("post request hoow", response);
-        props.history.push("/");
+        props.history.push(`/users/` + params.id);
       })
       .catch((err) => console.log(err));
   };
 
   // add user to list and reset form
-
   const handleSubmit = async (event) => {
     let newUser = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       id: faker.random.uuid(),
+      product: {
+        id: faker.random.uuid(),
+        title: title,
+      },
     };
     event.preventDefault();
     setFirstName("");
@@ -68,12 +77,14 @@ export default function EditUser(props) {
     setEmail("");
     editUser(newUser);
   };
+
+  // const {
+  //   match: { params },
+  // } = props;
+
   return (
     <div>
-      <Link className="btn grey" to={"/"}>
-        {" "}
-        Back{" "}
-      </Link>
+      {/* <Link to={`/users/edit/${params.id}`}> Click </Link> */}
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <h1> Edit user </h1>
@@ -98,6 +109,13 @@ export default function EditUser(props) {
               type="text"
               name="email"
               placeholder="Email"
+            />
+            <input
+              value={title}
+              onChange={handleProductChange}
+              type="text"
+              name="Product"
+              placeholder="Product"
             />
             <button className="btn" type="submit">
               Save{" "}

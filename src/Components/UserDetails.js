@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 
 export default function UserDetails(props) {
   const [details, setDetails] = React.useState([]);
+  const [title, setTitle] = React.useState("");
 
   // Get user details with ID
   React.useEffect(() => {
@@ -13,12 +14,15 @@ export default function UserDetails(props) {
     } = props;
     axios.get(`http://localhost:3000/users/` + params.id).then((res) => {
       let details = res.data;
+      let title = details.product.title;
+      setTitle(title);
       setDetails(details);
-      console.log("Get request with user info ", res.data);
+      console.log("Get request with user info ", details);
+      console.log(details.product.title);
     });
   }, []);
 
-  // Delete user request 
+  // Delete user with ID request
   const onDelete = (id) => {
     const {
       match: { params },
@@ -42,6 +46,7 @@ export default function UserDetails(props) {
           <li className="collection-item"> Firstname : {details.firstName} </li>
           <li className="collection-item"> Lastname : {details.lastName}</li>
           <li className="collection-item">Email: {details.email}</li>
+          <li className="collection-item">Product: {title}</li>
         </ul>
         <Link className="btn" to={`/users/edit/${details.id}`}>
           {" "}
@@ -50,27 +55,18 @@ export default function UserDetails(props) {
         <Button className="btn red" onClick={() => onDelete(details.id)}>
           delete
         </Button>
+        <Link className="btn grey" to={"/"}>
+          Back
+        </Link>
       </DetailContainer>
     </div>
   );
 }
 
 const DetailContainer = styled.section`
-  /* margin-top: 8px;
-  margin-right: 21px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
   text-align: center;
 `;
 
 const Button = styled.button`
-  /* margin-top: 8px;
-  margin-right: 21px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
   margin: 10px;
 `;

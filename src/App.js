@@ -63,7 +63,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" exact component={Users} />
-        <Route exact path="/FormComponent" component={FormComponent} />
+        <Route exact path="/Formcomponent/" component={FormComponent} />
         <Route exact path="/users/edit/:id" component={EditUser} />
         <Route exact path="/users/:id" component={UserDetails} />
       </Switch>

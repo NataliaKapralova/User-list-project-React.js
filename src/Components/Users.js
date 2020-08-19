@@ -15,7 +15,6 @@ export default function Users() {
       setDataOfUsers(dataOfUsers);
     });
   }, []);
-
   return (
     <div>
       <header>

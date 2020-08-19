@@ -10,7 +10,6 @@ export default function UserItem({ user }) {
         <li className="listItems"> {user.lastName} </li>{" "}
         <li className="listItems"> {user.email} </li>{" "}
         <Link to={`/users/${user.id}`}>
-          {" "}
           <i className="small icon-black material-icons">create</i>
         </Link>
       </ul>

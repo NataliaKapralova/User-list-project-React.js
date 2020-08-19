@@ -7,6 +7,7 @@ export default function FormComponent(props) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [title, setTitle] = React.useState("");
 
   // handle input value
   const handleNameChange = (e) => {
@@ -19,9 +20,15 @@ export default function FormComponent(props) {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
 
   // post request for new user
   const addNewUser = async (newUser) => {
+    const {
+      match: { params },
+    } = props;
     await axios
       .request({
         method: "post",
@@ -42,6 +49,10 @@ export default function FormComponent(props) {
       lastName: lastName,
       email: email,
       id: faker.random.uuid(),
+      product: {
+        id: faker.random.uuid(),
+        title: title,
+      },
     };
     event.preventDefault();
     setFirstName("");
@@ -75,6 +86,13 @@ export default function FormComponent(props) {
               type="text"
               name="email"
               placeholder="Email"
+            />
+            <input
+              value={title}
+              onChange={handleTitleChange}
+              type="text"
+              name="title"
+              placeholder="product"
             />
             <button className="btn" type="submit">
               save
