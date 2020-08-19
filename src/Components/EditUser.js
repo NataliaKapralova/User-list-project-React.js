@@ -49,7 +49,6 @@ export default function EditUser(props) {
       .then((response) => {
         console.log("post request hoow", response);
         props.history.push("/");
-        alert("user edit ");
       })
       .catch((err) => console.log(err));
   };
@@ -71,7 +70,10 @@ export default function EditUser(props) {
   };
   return (
     <div>
-      <Link className="btn grey" to={"/"}> Back </Link>
+      <Link className="btn grey" to={"/"}>
+        {" "}
+        Back{" "}
+      </Link>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <h1> Edit user </h1>
