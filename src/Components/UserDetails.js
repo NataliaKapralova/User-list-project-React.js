@@ -18,7 +18,6 @@ export default function UserDetails(props) {
       setTitle(title);
       setDetails(details);
       console.log("Get request with user info ", details);
-      console.log(details.product.title);
     });
   }, []);
 
@@ -37,6 +36,19 @@ export default function UserDetails(props) {
     }
   };
 
+  const iets = () => {
+    if (details.optionalSkill === "") {
+      return <li className="collection-item">Extra skills : none </li>;
+    } else {
+      return (
+        <li className="collection-item">
+          {" "}
+          optional skill : {details.optionalSkill}{" "}
+        </li>
+      );
+    }
+  };
+
   return (
     <div>
       <DetailContainer>
@@ -47,6 +59,8 @@ export default function UserDetails(props) {
           <li className="collection-item"> Lastname : {details.lastName}</li>
           <li className="collection-item">Email: {details.email}</li>
           <li className="collection-item">Product: {title}</li>
+          <li className="collection-item">Skill: {details.skill}</li>
+          <li className="collection-item">{iets()}</li>
         </ul>
         <Link className="btn" to={`/users/edit/${details.id}`}>
           {" "}

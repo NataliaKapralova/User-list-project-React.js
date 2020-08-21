@@ -3,12 +3,15 @@ import * as styles from "../styles.css";
 import axios from "axios";
 import faker from "faker";
 import { Link } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 export default function EditUser(props) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [title, setTitle] = React.useState("");
+  const [skill, setSkill] = React.useState("");
+  const [optionalSkill, setOptionalSkill] = React.useState("");
 
   //handle input value
   const handleNameChange = (e) => {
@@ -26,6 +29,15 @@ export default function EditUser(props) {
     setTitle(e.target.value);
   };
 
+  const handleSkillChange = (e) => {
+    setSkill(skill);
+    console.log("woorks ", skill);
+  };
+
+  const handleOptionalSkillChange = (e) => {
+    setOptionalSkill(e.target.value);
+  };
+
   //fetch user ID
 
   React.useEffect(() => {
@@ -37,6 +49,8 @@ export default function EditUser(props) {
       setLastName(res.data.lastName);
       setEmail(res.data.email);
       setTitle(res.data.product.title);
+      setSkill(res.data.skill);
+      setOptionalSkill(res.data.optionalSkill);
       console.log("Get request with user info ", res.data);
     });
   }, []);
@@ -66,6 +80,8 @@ export default function EditUser(props) {
       lastName: lastName,
       email: email,
       id: faker.random.uuid(),
+      skill: skill,
+      optionalSkill: optionalSkill,
       product: {
         id: faker.random.uuid(),
         title: title,
@@ -116,6 +132,17 @@ export default function EditUser(props) {
               type="text"
               name="Product"
               placeholder="Product"
+            />
+            <Dropdown
+              value={skill}
+              setSkill={setSkill}
+              handleSkillChange={handleSkillChange}
+            />
+            <input
+              onChange={handleOptionalSkillChange}
+              value={optionalSkill}
+              name="Optional skill"
+              placeholder="Other skill **optional"
             />
             <button className="btn" type="submit">
               Save{" "}

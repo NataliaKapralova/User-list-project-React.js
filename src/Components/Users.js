@@ -8,6 +8,7 @@ import styled, { css } from "styled-components";
 
 export default function Users() {
   const [dataOfUsers, setDataOfUsers] = React.useState([]);
+  const [dataOfProducts, setDataOfProducts] = React.useState([]);
 
   React.useEffect(() => {
     axios.get(`http://localhost:3000/users`).then((res) => {
@@ -15,6 +16,15 @@ export default function Users() {
       setDataOfUsers(dataOfUsers);
     });
   }, []);
+
+  React.useEffect(() => {
+    axios.get(`http://localhost:3000/products`).then((res) => {
+      let dataOfProducts = res.data;
+      setDataOfProducts(dataOfProducts);
+      console.log("heyyy", dataOfProducts);
+    });
+  }, []);
+
   return (
     <div>
       <header>

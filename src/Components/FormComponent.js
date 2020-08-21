@@ -2,14 +2,27 @@ import React from "react";
 import * as styles from "../styles.css";
 import axios from "axios";
 import faker from "faker";
+import Dropdown from "./Dropdown";
 
-export default function FormComponent(props) {
+export default function FormComponent(props, item) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [title, setTitle] = React.useState("");
+  const [skill, setSkill] = React.useState("");
+  const [optionalSkill, setOptionalSkill] = React.useState("");
 
-  // handle input value
+  const [dataOfProducts, setDataOfProducts] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`http://localhost:3000/products`).then((res) => {
+      let dataOfProducts = res.data;
+      setDataOfProducts(dataOfProducts);
+      console.log("hoi", dataOfProducts);
+    });
+  }, []);
+
+  // handle input value change
   const handleNameChange = (e) => {
     setFirstName(e.target.value);
   };
@@ -22,6 +35,14 @@ export default function FormComponent(props) {
   };
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
+  };
+
+  const handleSkillChange = (e) => {
+    setSkill(skill);
+  };
+
+  const handleOptionalSkillChange = (e) => {
+    setOptionalSkill(e.target.value);
   };
 
   // post request for new user
@@ -42,6 +63,7 @@ export default function FormComponent(props) {
       .catch((err) => console.log(err));
     console.log(newUser);
   };
+
   //  create new user / add new user to array /
   const handleSubmit = async (event) => {
     let newUser = {
@@ -49,6 +71,8 @@ export default function FormComponent(props) {
       lastName: lastName,
       email: email,
       id: faker.random.uuid(),
+      skill: skill,
+      optionalSkill: optionalSkill,
       product: {
         id: faker.random.uuid(),
         title: title,
@@ -60,6 +84,7 @@ export default function FormComponent(props) {
     setEmail("");
     addNewUser(newUser);
   };
+
   return (
     <div>
       <div className="form-container">
@@ -70,22 +95,25 @@ export default function FormComponent(props) {
               value={firstName}
               onChange={handleNameChange}
               type="text"
-              placeholder="Name"
+              placeholder="Name*"
               name="name"
+              required
             />
             <input
               name="lastName"
               value={lastName}
               onChange={handleUserNameChange}
               type="text"
-              placeholder="lastname"
+              placeholder="lastname*"
+              required
             />
             <input
               value={email}
               onChange={handleEmailChange}
               type="text"
               name="email"
-              placeholder="Email"
+              placeholder="Email*"
+              required
             />
             <input
               value={title}
@@ -94,8 +122,19 @@ export default function FormComponent(props) {
               name="title"
               placeholder="product"
             />
+            <Dropdown
+              value={skill}
+              setSkill={setSkill}
+              handleSkillChange={handleSkillChange}
+            />
+            <input
+              onChange={handleOptionalSkillChange}
+              value={optionalSkill}
+              name="Optional skill"
+              placeholder="Other skill **optional"
+            />
             <button className="btn" type="submit">
-              save
+              Save
             </button>
           </div>
         </form>
