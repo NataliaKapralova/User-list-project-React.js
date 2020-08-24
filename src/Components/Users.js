@@ -1,19 +1,22 @@
 import React from "react";
-import * as styles from "../styles.css";
 import { Link } from "react-router-dom";
-// import FormComponent from "./FormComponent";
 import axios from "axios";
 import UserItem from "./UserItem";
 import styled, { css } from "styled-components";
 
 export default function Users() {
+  const [loading, setLoading] = React.useState(false);
   const [dataOfUsers, setDataOfUsers] = React.useState([]);
   const [dataOfProducts, setDataOfProducts] = React.useState([]);
+  const [search, setSearch] = React.useState("");
+  const [filteredUsers, setFilteredUsers] = React.useState([]);
 
   React.useEffect(() => {
+    setLoading(true);
     axios.get(`http://localhost:3000/users`).then((res) => {
       let dataOfUsers = res.data;
       setDataOfUsers(dataOfUsers);
+      setLoading(false);
     });
   }, []);
 
@@ -25,27 +28,51 @@ export default function Users() {
     });
   }, []);
 
+  React.useEffect(() => {
+    setFilteredUsers(
+      dataOfUsers.filter((user) =>
+        user.firstName.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, dataOfUsers]);
+
+  const userList = filteredUsers.map((user) => (
+    <UserItem key={user.id} user={user} />
+  ));
+
+  if (loading) {
+    return <p>Loading users...</p>;
+  }
+
   return (
     <div>
       <header>
         {" "}
-        <h4> User list project </h4>{" "}
+        <h4> User list project </h4>
       </header>
+      <div>
+        <div class="input-field inline">
+          <input
+            className="input-field input[type=text]:focus + label"
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            id="search"
+          />
+          <label for="search">search</label>
+        </div>
+      </div>
       <div className="Nav">
         <li> Name </li>
         <li> Username </li>
         <li> Email </li>
-        <Link className="btn-small blue" to={"/FormComponent"}>
+        <li> Skill</li>
+        <Link className="btn-small blue" to={"/AddUser"}>
           add user
         </Link>
       </div>
-      <div>
-        {dataOfUsers.map((user, i) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </div>
+      {userList}
       <div className="fixed-action-btn">
-        <Link to={"/FormComponent"} className="btn-floating btn-medium black">
+        <Link to={"/AddUser"} className="btn-floating btn-medium black">
           {" "}
           <i className="fa fa-plus"> </i>
         </Link>
@@ -53,8 +80,3 @@ export default function Users() {
     </div>
   );
 }
-
-const Button = styled.button`
-  /* margin-top: 8px;
-  margin-right: 21px; */
-`;

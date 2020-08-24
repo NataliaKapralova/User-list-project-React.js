@@ -52,7 +52,7 @@
 
 import React from "react";
 import Users from "./Components/Users";
-import FormComponent from "./Components/FormComponent";
+import AddUser from "./Components/AddUser";
 import UserDetails from "./Components/UserDetails";
 import EditUser from "./Components/EditUser";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -63,7 +63,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" exact component={Users} />
-        <Route exact path="/Formcomponent/" component={FormComponent} />
+        <Route exact path="/AddUser/" component={AddUser} />
         <Route exact path="/users/edit/:id" component={EditUser} />
         <Route exact path="/users/:id" component={UserDetails} />
       </Switch>

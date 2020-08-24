@@ -4,7 +4,7 @@ import axios from "axios";
 import faker from "faker";
 import Dropdown from "./Dropdown";
 
-export default function FormComponent(props, item) {
+export default function FormComponent(props) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -26,7 +26,7 @@ export default function FormComponent(props, item) {
   const handleNameChange = (e) => {
     setFirstName(e.target.value);
   };
-  const handleUserNameChange = (e) => {
+  const handleLastNameChange = (e) => {
     setLastName(e.target.value);
   };
 
@@ -44,6 +44,16 @@ export default function FormComponent(props, item) {
   const handleOptionalSkillChange = (e) => {
     setOptionalSkill(e.target.value);
   };
+
+  // const handleInputChange = (e) => {
+  //   const target = e.target;
+  //   const value = target.value;
+  //   const name = target.name;
+
+  //   setValues({
+  //     [name]: value,
+  //   });
+  // };
 
   // post request for new user
   const addNewUser = async (newUser) => {
@@ -102,7 +112,7 @@ export default function FormComponent(props, item) {
             <input
               name="lastName"
               value={lastName}
-              onChange={handleUserNameChange}
+              onChange={handleLastNameChange}
               type="text"
               placeholder="lastname*"
               required

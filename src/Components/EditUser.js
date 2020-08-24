@@ -37,7 +37,7 @@ export default function EditUser(props) {
   const handleOptionalSkillChange = (e) => {
     setOptionalSkill(e.target.value);
   };
-
+  
   //fetch user ID
 
   React.useEffect(() => {
@@ -130,7 +130,7 @@ export default function EditUser(props) {
               value={title}
               onChange={handleProductChange}
               type="text"
-              name="Product"
+              name="product"
               placeholder="Product"
             />
             <Dropdown

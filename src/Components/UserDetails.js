@@ -38,12 +38,16 @@ export default function UserDetails(props) {
 
   const iets = () => {
     if (details.optionalSkill === "") {
-      return <li className="collection-item">Extra skills : none </li>;
+      return (
+        <li className="collection-item">
+          <p> Optional skill:</p> none{" "}
+        </li>
+      );
     } else {
       return (
         <li className="collection-item">
           {" "}
-          optional skill : {details.optionalSkill}{" "}
+          <p> Optional-skill: </p> {details.optionalSkill}{" "}
         </li>
       );
     }
@@ -54,12 +58,31 @@ export default function UserDetails(props) {
       <DetailContainer>
         <h1> Details </h1>
         <ul className="collection">
-          <li className="collection-item">ID : {details.id} </li>
-          <li className="collection-item"> Firstname : {details.firstName} </li>
-          <li className="collection-item"> Lastname : {details.lastName}</li>
-          <li className="collection-item">Email: {details.email}</li>
-          <li className="collection-item">Product: {title}</li>
-          <li className="collection-item">Skill: {details.skill}</li>
+          <li className="collection-item">
+            <p> ID : </p>
+            {details.id}
+          </li>
+          <li className="collection-item">
+            <p> Firstname: </p> {details.firstName}
+          </li>
+          <li className="collection-item">
+            <p> Lastname: </p>
+            {details.lastName}
+          </li>
+          <li className="collection-item">
+            {" "}
+            <p> Email: </p>
+            {details.email}
+          </li>
+          <li className="collection-item">
+            {" "}
+            <p> Product: </p>
+            {title}
+          </li>
+          <li className="collection-item">
+            {" "}
+            <p> Skill: </p> {details.skill}
+          </li>
           <li className="collection-item">{iets()}</li>
         </ul>
         <Link className="btn" to={`/users/edit/${details.id}`}>
